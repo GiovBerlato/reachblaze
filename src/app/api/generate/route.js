@@ -14,41 +14,72 @@ export async function POST(request) {
     const ai = new GoogleGenAI({ apiKey: geminiApiKey });
 
     const prompt = `
-Você é um copywriter de resposta direta de elite, especialista na "creator economy" e no mercado de afiliados digitais.
-Sua missão é criar um kit de divulgação letal e altamente persuasivo para o seguinte produto:
+Você é um copywriter de elite especializado em e-commerce Direct-to-Consumer (D2C) e Creator Economy, mesclando a persuasão lógica de Alex Hormozi com o desejo aspiracional de marcas premium.
+Objetivo único: gerar vendas através de uma comunicação altamente atraente e persuasiva.
 
-- Produto: ${produto}
-- Nicho: ${nicho}
-- Promessa Principal: ${promessa}
+Produto: ${produto}
+Nicho: ${nicho}
+Promessa: ${promessa}
 
-Regras inegociáveis:
-1. Seu objetivo único é gerar vendas e conversão.
-2. Ignore introduções, não seja educado, não explique o que vai fazer.
-3. Use gatilhos mentais (escassez, urgência, curiosidade, dor).
-4. Entregue EXATAMENTE a estrutura abaixo, formatada em Markdown para fácil leitura:
+PROCESSO INTERNO OBRIGATÓRIO (Faça este mapeamento mentalmente, NÃO inclua isso no texto de saída):
+1. Mapeie:
+   - 3 inconvenientes reais e irritantes do dia a dia do avatar antes de usar o produto (foco em atrito prático, não em ataques psicológicos).
+   - 3 aspirações de status, prazer ou praticidade que o produto entrega.
+   - 3 objeções comuns (preço, medo de não usar, complexidade).
 
-### 🎯 Ângulo de Venda Principal
-[Descreva em apenas um parágrafo brutal o motivo psicológico pelo qual a audiência precisa comprar isso AGORA e não amanhã]
+Regras de Saída Inegociáveis:
+- Tom: Persuasivo, energético, confiante e magnético. Evite palavras excessivamente depressivas ou humilhantes (como "desastre", "humilhação", "fracasso"). Em vez disso, foque na transição do "comum/irritante" para o "extraordinário/perfeito".
+- Use ganchos baseados em quebra de expectativa, curiosidade e o contraste claro de resultados.
+- Sem clichês corporativos e sem introduções ou saudações. Comece direto no Markdown:
+
+Entregue EXATAMENTE a estrutura abaixo:
+
+### Ângulo de Venda Principal
+
+[1 parágrafo intenso mostrando por que permanecer no problema custa mais caro do que comprar agora]
 
 ---
 
-### 🎣 3 Ganchos Virais (Para TikTok / Reels / Shorts)
-1. **Foco na Dor:** [Gancho que expõe um erro que a pessoa está cometendo]
-2. **Quebra de Padrão:** [Gancho que contraria uma crença popular do nicho]
-3. **Curiosidade Extrema:** [Gancho que revela um segredo sem dar a resposta final]
+### 3 Ganchos Virais (TikTok / Reels / Shorts)
+
+1. **Foco na Dor:** [Mostre um erro invisível que está sabotando o resultado da audiência]
+2. **Quebra de Padrão:** [Ataque uma crença popular do nicho]
+3. **Curiosidade Extrema:** [Revele um mecanismo ou descoberta sem entregar a resposta completa]
 
 ---
 
-### 📧 Sequência de E-mails de Conversão
+### Sequência de E-mails de Conversão
 
 **E-mail 1: O Dedo na Ferida (Lógica + Dor)**
-**Assunto:** [Crie um assunto magnético com alta taxa de abertura]
-**Corpo:** [E-mail persuasivo de 3 parágrafos curtos. Mostre a realidade cruel do problema, apresente o produto como a única ponte segura e finalize com a chamada para ação (CTA)]
+
+**Assunto:** [Assunto com alta curiosidade e abertura]
+
+**Corpo:**
+
+[Parágrafo 1]
+Exponha a realidade que a pessoa evita admitir.
+
+[Parágrafo 2]
+Mostre por que as soluções tradicionais falham.
+
+[Parágrafo 3]
+Apresente o produto como a ponte para o resultado prometido e finalize com CTA.
+
+---
 
 **E-mail 2: O Ultimato (Urgência)**
-**Assunto:** [Assunto curto focado em FOMO - Fear Of Missing Out]
-**Corpo:** [E-mail rápido de 2 parágrafos. O que ele perde se fechar essa aba agora? Crie urgência real e justifique o clique imediato]
-    `;
+
+**Assunto:** [Assunto curto baseado em FOMO]
+
+**Corpo:**
+
+[Parágrafo 1]
+Mostre o que a pessoa perde ao adiar a decisão.
+
+[Parágrafo 2]
+Crie urgência legítima e finalize com CTA direto.
+
+`;
 
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash-lite',
