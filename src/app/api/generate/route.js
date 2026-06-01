@@ -4,7 +4,7 @@ import { GoogleGenAI } from '@google/genai';
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { produto, nicho, promessa } = body;
+    const { produto, nicho, promessa, tom } = body;
 
     const geminiApiKey = process.env.GEMINI_API_KEY;
     if (!geminiApiKey) {
@@ -14,23 +14,25 @@ export async function POST(request) {
     const ai = new GoogleGenAI({ apiKey: geminiApiKey });
 
     const prompt = `
-Você é um copywriter de elite especializado em e-commerce Direct-to-Consumer (D2C) e Creator Economy, mesclando a persuasão lógica de Alex Hormozi com o desejo aspiracional de marcas premium.
+Você é um copywriter de elite especializado em e-commerce Direct-to-Consumer (D2C) e Creator Economy.
 Objetivo único: gerar vendas através de uma comunicação altamente atraente e persuasiva.
 
 Produto: ${produto}
 Nicho: ${nicho}
 Promessa: ${promessa}
+Tom de Voz Exigido: ${tom}
 
 PROCESSO INTERNO OBRIGATÓRIO (Faça este mapeamento mentalmente, NÃO inclua isso no texto de saída):
 1. Mapeie:
-   - 3 inconvenientes reais e irritantes do dia a dia do avatar antes de usar o produto (foco em atrito prático, não em ataques psicológicos).
+   - 3 inconvenientes reais e irritantes do dia a dia do avatar.
    - 3 aspirações de status, prazer ou praticidade que o produto entrega.
-   - 3 objeções comuns (preço, medo de não usar, complexidade).
+   - 3 objeções comuns.
 
 Regras de Saída Inegociáveis:
-- Tom: Persuasivo, energético, confiante e magnético. Evite palavras excessivamente depressivas ou humilhantes (como "desastre", "humilhação", "fracasso"). Em vez disso, foque na transição do "comum/irritante" para o "extraordinário/perfeito".
-- Use ganchos baseados em quebra de expectativa, curiosidade e o contraste claro de resultados.
-- Sem clichês corporativos e sem introduções ou saudações. Comece direto no Markdown:
+- Você deve escrever OBRIGATORIAMENTE no Tom de Voz Exigido (${tom}).
+- Use ganchos baseados em quebra de expectativa e curiosidade.
+- Sem clichês corporativos e sem introduções ou saudações. 
+- Entregue EXATAMENTE a estrutura abaixo, formatada em Markdown:
 
 Entregue EXATAMENTE a estrutura abaixo:
 
